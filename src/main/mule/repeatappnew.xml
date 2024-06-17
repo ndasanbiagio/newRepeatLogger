@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="660703c9-f79a-41f2-8f1c-abdee2636127" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="SchedularFlowNew" doc:id="4fd56dbb-c72f-4cc3-bbff-c9bd8d95f701" >
+		<http:listener doc:name="HTTP Listener" doc:id="01bc729f-b222-4220-926f-01881638bcb1" config-ref="HTTP_Listener_config" path="/log"/>
+		<logger level="INFO" doc:name="Log Message" doc:id="6205a23d-e20c-4e7c-b4ce-ce11ae464a29" message="************This is the mule app************"/>
+		<logger level="INFO" doc:name="Second Logger" doc:id="b1a54b83-614d-463f-ab21-07fb15985270" message="*************This is seconda message*************"/>
+		<logger level="INFO" doc:name="Third Logger" doc:id="12159f81-ce55-4e2e-a58b-b7c6a1f0fa47" message="*************Mule app is running fine*************"/>
+	</flow>
+	<flow name="repeatappnewFlow" doc:id="38d8dc3a-c95e-40b8-8895-65b823110868" >
+		<http:listener doc:name="Listener" doc:id="bb7d4f49-cc4e-4f7e-ba5e-ed128ad8da74" config-ref="HTTP_Listener_config" path="/secondlog"/>
+		<logger level="INFO" doc:name="Logger" doc:id="b7188abb-5706-4275-ab3c-f6b0e49a9df8" message="*******This is second Logger Flow*******"/>
+	</flow>
+</mule>
